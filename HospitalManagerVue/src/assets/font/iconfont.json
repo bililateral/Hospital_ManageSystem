@@ -1,0 +1,16 @@
+{
+  "id": "4981814",
+  "name": "demo1",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-r-",
+  "description": "验证码图标",
+  "glyphs": [
+    {
+      "icon_id": "45018480",
+      "name": "验证码",
+      "font_class": "code",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    }
+  ]
+}
