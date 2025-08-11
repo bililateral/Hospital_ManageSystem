@@ -1,7 +1,7 @@
 /*
  * @Description: 
- * @Author: Rabbiter
- * @Date: 2023-01-14 20:02:29
+ * @Author: bililateral
+ * @Date: 2025-08-09 20:02:29
  */
 module.exports = {
     lintOnSave: false, // 关闭eslint校验
