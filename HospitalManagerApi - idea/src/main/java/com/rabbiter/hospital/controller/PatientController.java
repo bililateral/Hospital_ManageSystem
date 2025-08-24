@@ -10,7 +10,6 @@ import com.rabbiter.hospital.service.PatientService;
 import com.rabbiter.hospital.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import redis.clients.jedis.JedisPool;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +27,6 @@ public class PatientController {
     private PatientService patientService;
     @Autowired
     private OrderService orderService;
-    @Autowired
-    private JedisPool jedisPool;
     @Resource
     private OrderMapper orderMapper;
     @Autowired
@@ -107,14 +104,13 @@ public class PatientController {
     }
 
     /**
-     * 增加患者信息
+     * 接收注册的患者信息
      */
-    @RequestMapping("/addPatient")
-    public ResponseData addPatient(Patient patient) {
+    @PostMapping("/addPatient")
+    public ResponseData addPatient(@RequestBody Patient patient) {
         Boolean bo = this.patientService.addPatient(patient);
-        if (bo) {
+        if (bo)
             return ResponseData.success("注册成功");
-        }
         return ResponseData.fail("注册失败！账号或邮箱已被占用");
     }
     /**
