@@ -388,8 +388,7 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     request
-                        .get("patient/addPatient", {
-                            params: {
+                        .post("patient/addPatient", {
                                 pId: this.registerForm.pId,
                                 pName: this.registerForm.pName,
                                 pPassword: this.registerForm.pPassword,
@@ -398,7 +397,6 @@ export default {
                                 pPhone: this.registerForm.pPhone,
                                 pCard: this.registerForm.pCard,
                                 pBirthday: this.registerForm.pBirthday,
-                            },
                         })
                         .then((res) => {
                             if (res.data.status !== 200)
