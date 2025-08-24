@@ -12,6 +12,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(new JwtInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/patient/pdf")
+                .excludePathPatterns("/patient/addPatient")
                 .excludePathPatterns("/**/login")
                 .excludePathPatterns("/**/getCaptcha"); //允许验证码接口
     }
