@@ -6,66 +6,39 @@
             <el-row type="flex">
                 <el-col :span="6">
                     <el-input v-model="query" placeholder="请输入名称查询">
-                        <el-button
-                            slot="append"
-                            style="font-size: 18px;"
-                            @click="requestDrugs"
-                        ><i class="iconfont icon-r-find" style="font-size: 22px;"></i> 搜索</el-button>
+                        <el-button slot="append" style="font-size: 18px;" @click="requestDrugs"><i
+                                class="iconfont icon-r-find" style="font-size: 22px;"></i> 搜索</el-button>
                     </el-input>
                 </el-col>
                 <el-col :span="6"></el-col>
                 <el-col :span="6">
-                    <el-button
-                        type="primary"
-                        @click="addFormVisible = true"
-                        style="font-size: 18px"
-                    >
-                    <i class="iconfont icon-r-add" style="font-size: 22px;"></i> 
-                        增加药物</el-button
-                    >
+                    <el-button type="primary" @click="addFormVisible = true" style="font-size: 18px">
+                        <i class="iconfont icon-r-add" style="font-size: 22px;"></i>
+                        增加药物</el-button>
                 </el-col>
             </el-row>
             <!-- 表格 -->
             <el-table :data="drugData" stripe border>
                 <el-table-column label="编号" prop="drId"></el-table-column>
                 <el-table-column label="名称" prop="drName"></el-table-column>
-                <el-table-column
-                    label="剩余数量"
-                    prop="drNumber"
-                ></el-table-column>
+                <el-table-column label="剩余数量" prop="drNumber"></el-table-column>
                 <el-table-column label="单位" prop="drUnit"></el-table-column>
                 <el-table-column label="单价" prop="drPrice"></el-table-column>
-                <el-table-column
-                    label="出版商"
-                    prop="drPublisher"
-                ></el-table-column>
+                <el-table-column label="出版商" prop="drPublisher"></el-table-column>
                 <el-table-column label="操作" width="240" fixed="right">
                     <template slot-scope="scope">
-                        <el-button
-                            style="font-size: 18px"
-                            type="success"
-                            @click="modifyDialog(scope.row.drId)"
-                        ><i class="iconfont icon-r-edit" style="font-size: 22px;"></i> 编辑</el-button>
-                        <el-button
-                            style="font-size: 18px"
-                            type="danger"
-                            @click="deleteDialog(scope.row.drId)"
-                        ><i class="iconfont icon-r-delete" style="font-size: 22px;"></i> 删除</el-button>
+                        <el-button style="font-size: 18px" type="success" @click="modifyDialog(scope.row.drId)"><i
+                                class="iconfont icon-r-edit" style="font-size: 22px;"></i> 编辑</el-button>
+                        <el-button style="font-size: 18px" type="danger" @click="deleteDialog(scope.row.drId)"><i
+                                class="iconfont icon-r-delete" style="font-size: 22px;"></i> 删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
 
             <!-- 分页 -->
-            <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                background
-                layout="total, sizes, prev, pager, next, jumper"
-                :current-page="pageNumber"
-                :page-size="size"
-                :page-sizes="[1, 2, 4, 8, 16]"
-                :total="total"
-            >
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" background
+                layout="total, sizes, prev, pager, next, jumper" :current-page="pageNumber" :page-size="size"
+                :page-sizes="[1, 2, 4, 8, 16]" :total="total">
             </el-pagination>
         </el-card>
 
@@ -79,11 +52,7 @@
                     <el-input v-model="addForm.drName"></el-input>
                 </el-form-item>
                 <el-form-item label="数量" prop="drNumber" label-width="80px">
-                    <el-input-number
-                        v-model="addForm.drNumber"
-                        :min="0"
-                        :max="1000"
-                    ></el-input-number>
+                    <el-input-number v-model="addForm.drNumber" :min="0" :max="1000"></el-input-number>
                 </el-form-item>
                 <el-form-item label="单位" prop="drUnit" label-width="80px">
                     <el-radio v-model="addForm.drUnit" label="盒">盒</el-radio>
@@ -93,19 +62,15 @@
                 <el-form-item label="单价" prop="drPrice" label-width="80px">
                     <el-input v-model="addForm.drPrice"></el-input>
                 </el-form-item>
-                <el-form-item
-                    label="出版商"
-                    prop="drPublisher"
-                    label-width="80px"
-                >
+                <el-form-item label="出版商" prop="drPublisher" label-width="80px">
                     <el-input v-model="addForm.drPublisher"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="addFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left" style="font-size: 20px;"></i> 取 消</el-button>
-                <el-button type="primary" @click="addDrug('ruleForm')"
-                    style="font-size: 18px;"><i class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button
-                >
+                <el-button @click="addFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left"
+                        style="font-size: 20px;"></i> 取 消</el-button>
+                <el-button type="primary" @click="addDrug('ruleForm')" style="font-size: 18px;"><i
+                        class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button>
             </div>
         </el-dialog>
 
@@ -113,48 +78,31 @@
         <el-dialog title="修改药物" :visible.sync="modifyFormVisible">
             <el-form :model="modifyForm" :rules="rules" ref="ruleForm">
                 <el-form-item label="编号" prop="drId" label-width="80px">
-                    <el-input
-                        v-model.number="modifyForm.drId"
-                        disabled
-                    ></el-input>
+                    <el-input v-model.number="modifyForm.drId" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="名称" prop="drName" label-width="80px">
                     <el-input v-model="modifyForm.drName"></el-input>
                 </el-form-item>
                 <el-form-item label="数量" prop="drNumber" label-width="80px">
-                    <el-input-number
-                        v-model="modifyForm.drNumber"
-                        :min="0"
-                        :max="1000"
-                    ></el-input-number>
+                    <el-input-number v-model="modifyForm.drNumber" :min="0" :max="1000"></el-input-number>
                 </el-form-item>
                 <el-form-item label="单位" prop="drUnit" label-width="80px">
-                    <el-radio v-model="modifyForm.drUnit" label="盒"
-                        >盒</el-radio
-                    >
-                    <el-radio v-model="modifyForm.drUnit" label="袋"
-                        >袋</el-radio
-                    >
-                    <el-radio v-model="modifyForm.drUnit" label="剂"
-                        >剂</el-radio
-                    >
+                    <el-radio v-model="modifyForm.drUnit" label="盒">盒</el-radio>
+                    <el-radio v-model="modifyForm.drUnit" label="袋">袋</el-radio>
+                    <el-radio v-model="modifyForm.drUnit" label="剂">剂</el-radio>
                 </el-form-item>
                 <el-form-item label="单价" prop="drPrice" label-width="80px">
                     <el-input v-model="modifyForm.drPrice"></el-input>
                 </el-form-item>
-                <el-form-item
-                    label="出版商"
-                    prop="drPublisher"
-                    label-width="80px"
-                >
+                <el-form-item label="出版商" prop="drPublisher" label-width="80px">
                     <el-input v-model="modifyForm.drPublisher"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="modifyFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left" style="font-size: 20px;"></i> 取 消</el-button>
-                <el-button type="primary" @click="modifyDrug('ruleForm')"
-                    style="font-size: 18px;"><i class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button
-                >
+                <el-button @click="modifyFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left"
+                        style="font-size: 20px;"></i> 取 消</el-button>
+                <el-button type="primary" @click="modifyDrug('ruleForm')" style="font-size: 18px;"><i
+                        class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -364,6 +312,7 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 .el-form {
     margin-top: 0;
 }
