@@ -6,23 +6,15 @@
             <el-row type="flex">
                 <el-col :span="6">
                     <el-input v-model="query" placeholder="请输入患者id查询">
-                        <el-button
-                            slot="append"
-                            @click="requestBeds"
-                            style="font-size: 18px"
-                        ><i class="iconfont icon-r-find" style="font-size: 22px;"></i> 搜索</el-button>
+                        <el-button slot="append" @click="requestBeds" style="font-size: 18px"><i
+                                class="iconfont icon-r-find" style="font-size: 22px;"></i> 搜索</el-button>
                     </el-input>
                 </el-col>
                 <el-col :span="6"></el-col>
                 <el-col :span="6">
-                    <el-button
-                        type="primary"
-                        style="font-size: 18px"
-                        @click="addFormVisible = true"
-                    >
-                    <i class="iconfont icon-r-add" style="font-size: 22px;"></i> 
-                        增加床位</el-button
-                    >
+                    <el-button type="primary" style="font-size: 18px" @click="addFormVisible = true">
+                        <i class="iconfont icon-r-add" style="font-size: 22px;"></i>
+                        增加床位</el-button>
                 </el-col>
             </el-row>
             <!-- 表格 -->
@@ -30,52 +22,29 @@
                 <el-table-column label="床号" prop="bId"></el-table-column>
                 <el-table-column label="患者id" prop="pId"></el-table-column>
                 <el-table-column label="医生id" prop="dId"></el-table-column>
-                <el-table-column
-                    label="开始时间"
-                    prop="bStart"
-                ></el-table-column>
-                <el-table-column
-                    label="申请理由"
-                    prop="bReason"
-                ></el-table-column>
+                <el-table-column label="开始时间" prop="bStart"></el-table-column>
+                <el-table-column label="申请理由" prop="bReason"></el-table-column>
                 <el-table-column label="状态" prop="bState">
                     <template slot-scope="scope">
-                        <el-tag v-if="scope.row.bState === 1" type="danger"
-                            >已占用</el-tag
-                        >
-                        <el-tag v-if="scope.row.bState === 0" type="success"
-                            >空</el-tag
-                        >
+                        <el-tag v-if="scope.row.bState === 1" type="danger">已占用</el-tag>
+                        <el-tag v-if="scope.row.bState === 0" type="success">空</el-tag>
                     </template>
                 </el-table-column>
 
                 <el-table-column label="操作" width="240" fixed="right">
                     <template slot-scope="scope">
-                        <el-button
-                            style="font-size: 18px"
-                            type="success"
-                            @click="deleteDialog(scope.row.bId)"
-                        ><i class="iconfont icon-r-edit" style="font-size: 22px;"></i> 编辑</el-button>
-                        <el-button
-                            style="font-size: 18px"
-                            type="danger"
-                            @click="emptyDialog(scope.row.bId)"
-                        ><i class="iconfont icon-r-delete" style="font-size: 22px;"></i> 删除</el-button>
+                        <el-button style="font-size: 18px" type="success" @click="deleteDialog(scope.row.bId)"><i
+                                class="iconfont icon-r-edit" style="font-size: 22px;"></i> 编辑</el-button>
+                        <el-button style="font-size: 18px" type="danger" @click="emptyDialog(scope.row.bId)"><i
+                                class="iconfont icon-r-delete" style="font-size: 22px;"></i> 删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
 
             <!-- 分页 -->
-            <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                background
-                layout="total, sizes, prev, pager, next, jumper"
-                :current-page="pageNumber"
-                :page-size="size"
-                :page-sizes="[1, 2, 4, 8, 16]"
-                :total="total"
-            >
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" background
+                layout="total, sizes, prev, pager, next, jumper" :current-page="pageNumber" :page-size="size"
+                :page-sizes="[1, 2, 4, 8, 16]" :total="total">
             </el-pagination>
         </el-card>
 
@@ -87,10 +56,10 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="addFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left" style="font-size: 20px;"></i> 取 消</el-button>
-                <el-button type="primary" @click="addBed('ruleForm')"
-                    style="font-size: 18px;"><i class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button
-                >
+                <el-button @click="addFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left"
+                        style="font-size: 20px;"></i> 取 消</el-button>
+                <el-button type="primary" @click="addBed('ruleForm')" style="font-size: 18px;"><i
+                        class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -255,6 +224,7 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 .el-form {
     margin-top: 0;
 }
