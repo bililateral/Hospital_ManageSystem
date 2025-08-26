@@ -3,69 +3,37 @@
     <el-card>
       <el-row>
         <el-col :span="7">
-          挂号单号：<el-input
-            disabled
-            v-model="oId"
-            class="orderInput"
-          ></el-input>
+          挂号单号：<el-input disabled v-model="oId" class="orderInput"></el-input>
         </el-col>
         <el-col :span="7">
-          患者账号：<el-input
-            disabled
-            v-model="pId"
-            class="orderInput"
-          ></el-input
-        ></el-col>
+          患者账号：<el-input disabled v-model="pId" class="orderInput"></el-input></el-col>
         <el-col :span="7">
-          患者姓名：<el-input
-            disabled
-            v-model="pName"
-            class="orderInput"
-          ></el-input>
+          患者姓名：<el-input disabled v-model="pName" class="orderInput"></el-input>
         </el-col>
         <el-col :span="3">
-          <el-button type="success" @click="submitClick" style="font-size: 18px;"><i class="iconfont icon-r-yes" style="font-size: 22px"></i> 提交</el-button>
+          <el-button type="success" @click="submitClick" style="font-size: 18px;"><i class="iconfont icon-r-yes"
+              style="font-size: 22px"></i> 提交</el-button>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="7">
-          患者性别：<el-input
-            disabled
-            v-model="pGender"
-            class="orderInput"
-          ></el-input>
+          患者性别：<el-input disabled v-model="pGender" class="orderInput"></el-input>
         </el-col>
         <el-col :span="7">
-          联系方式：<el-input
-            disabled
-            v-model="pPhone"
-            class="orderInput"
-          ></el-input
-        ></el-col>
+          联系方式：<el-input disabled v-model="pPhone" class="orderInput"></el-input></el-col>
         <el-col :span="7">
-          医生姓名：<el-input
-            disabled
-            v-model="dName"
-            class="orderInput"
-          ></el-input>
+          医生姓名：<el-input disabled v-model="dName" class="orderInput"></el-input>
         </el-col>
         <el-col :span="3">
-          <el-button type="warning" @click="openReason" style="font-size: 18px;"><i class="iconfont icon-r-paper" style="font-size: 22px"></i> 病因编写</el-button>
+          <el-button type="warning" @click="openReason" style="font-size: 18px;"><i class="iconfont icon-r-paper"
+              style="font-size: 22px"></i> 病因编写</el-button>
         </el-col>
       </el-row>
       <!-- 药物表格 -->
       <el-row>
         <el-col :span="12">
-          <el-input
-            v-model="queryDrug"
-            placeholder="请输入名称查询"
-            class="drugInput"
-          >
-            <el-button
-              slot="append"
-              icon="el-icon-search"
-              @click="requestDrug"
-            ></el-button>
+          <el-input v-model="queryDrug" placeholder="请输入名称查询" class="drugInput">
+            <el-button slot="append" icon="el-icon-search" @click="requestDrug"></el-button>
           </el-input>
           <el-table :data="drugData" stripe border>
             <el-table-column label="编号" prop="drId"></el-table-column>
@@ -75,27 +43,15 @@
             <el-table-column label="单价" prop="drPrice"></el-table-column>
             <el-table-column label="操作" width="140" fixed="right">
               <template slot-scope="scope">
-                <el-button
-                  type="success"
-                  style="font-size: 14px;"
-                  @click="addDrug(scope.row.drId)"
-                  >
-                  <i class="iconfont icon-r-add" style="font-size: 16px;"></i> 
-                  增加</el-button
-                >
+                <el-button type="success" style="font-size: 14px;" @click="addDrug(scope.row.drId)">
+                  <i class="iconfont icon-r-add" style="font-size: 16px;"></i>
+                  增加</el-button>
               </template>
             </el-table-column>
           </el-table>
           <!-- 分页 -->
-          <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            background
-            layout="total, sizes, prev, pager, next"
-            :total="total"
-            :page-size="size"
-            :page-sizes="[1, 2, 4, 8, 16]"
-          >
+          <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" background
+            layout="total, sizes, prev, pager, next" :total="total" :page-size="size" :page-sizes="[1, 2, 4, 8, 16]">
           </el-pagination>
           <el-row></el-row>
         </el-col>
@@ -109,14 +65,8 @@
             <el-table-column label="小记" prop="drSum"></el-table-column>
             <el-table-column label="操作" width="140" fixed="right">
               <template slot-scope="scope">
-                <el-button
-                  type="danger"
-                  
-                  style="font-size: 14px;"
-                  icon="iconfont icon-r-delete"
-                  @click="deleteDrug(scope.row.drId)"
-                  > 移除</el-button
-                >
+                <el-button type="danger" style="font-size: 14px;" icon="iconfont icon-r-delete"
+                  @click="deleteDrug(scope.row.drId)"> 移除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -126,16 +76,8 @@
       <!-- 检查项目编写 -->
       <el-row>
         <el-col :span="12">
-          <el-input
-            v-model="queryCheck"
-            placeholder="请输入名称查询"
-            class="drugInput"
-          >
-            <el-button
-              slot="append"
-              icon="el-icon-search"
-              @click="requestCheck"
-            ></el-button>
+          <el-input v-model="queryCheck" placeholder="请输入名称查询" class="drugInput">
+            <el-button slot="append" icon="el-icon-search" @click="requestCheck"></el-button>
           </el-input>
           <el-table stripe border :data="checkData">
             <el-table-column label="编号" prop="chId"></el-table-column>
@@ -143,25 +85,14 @@
             <el-table-column label="价格" prop="chPrice"></el-table-column>
             <el-table-column label="操作" width="140" fixed="right">
               <template slot-scope="scope">
-                <el-button
-                  type="success"
-                  style="font-size: 14px;"
-                  icon="iconfont icon-r-add"
-                  @click="addCheck(scope.row.chId)"
-                  > 增加</el-button
-                >
+                <el-button type="success" style="font-size: 14px;" icon="iconfont icon-r-add"
+                  @click="addCheck(scope.row.chId)"> 增加</el-button>
               </template>
             </el-table-column>
           </el-table>
           <!-- 分页 -->
-          <el-pagination
-            @size-change="checkSizeChange"
-            @current-change="checkCurrentChange"
-            background
-            layout="total, prev, pager, next"
-            :total="checkTotal"
-            :page-size="checkSize"
-          >
+          <el-pagination @size-change="checkSizeChange" @current-change="checkCurrentChange" background
+            layout="total, prev, pager, next" :total="checkTotal" :page-size="checkSize">
           </el-pagination>
         </el-col>
         <!-- 右边已选择的检查 -->
@@ -172,13 +103,8 @@
             <el-table-column label="价格" prop="chPrice"></el-table-column>
             <el-table-column label="操作" width="120" fixed="right">
               <template slot-scope="scope">
-                <el-button
-                  type="danger"
-                  style="font-size: 14px;"
-                  icon="iconfont icon-r-delete"
-                  @click="deleteCheck(scope.row.chId)"
-                  > 移除</el-button
-                >
+                <el-button type="danger" style="font-size: 14px;" icon="iconfont icon-r-delete"
+                  @click="deleteCheck(scope.row.chId)"> 移除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -189,15 +115,11 @@
 
     <!-- 病因编写对话框 -->
     <el-dialog title="病因编写" :visible.sync="reasonFormVisible">
-      <el-input
-        type="textarea"
-        :rows="8"
-        placeholder="请输入内容"
-        v-model="reason"
-      >
+      <el-input type="textarea" :rows="8" placeholder="请输入内容" v-model="reason">
       </el-input>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="reasonFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left" style="font-size: 20px;"></i> 取 消</el-button>
+        <el-button @click="reasonFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left"
+            style="font-size: 20px;"></i> 取 消</el-button>
         <el-button type="primary" @click="holdReason">保存</el-button>
       </div>
     </el-dialog>
@@ -527,23 +449,29 @@ export default {
 .drugRigth {
   text-align: center;
 }
+
 .el-tag {
   margin: 8px;
 }
+
 .rigthTable {
   margin-top: 56px;
   margin-left: 8px;
 }
+
 .drugInput {
   margin-top: 8px;
   margin-bottom: 8px;
 }
+
 .el-row {
   margin: 5px;
 }
+
 .orderInput {
   width: 240px;
 }
+
 .el-pagination {
   margin: 8px;
 }
