@@ -3,24 +3,16 @@
         <el-card>
             <div>
                 <div id="arrangeIndex" style="font-size: 18px;">
-                    <i
-                        class="iconfont icon-r-list"
-                        style="margin: 10px; font-size: 24px"
-                    >
+                    <i class="iconfont icon-r-list" style="margin: 10px; font-size: 24px">
                     </i>
                     请选择值班日期：
                 </div>
                 <br />
                 <ul class="dateUl">
                     <li v-for="monthDay in monthDays" :key="monthDay">
-                        <el-button
-                            type="primary"
-                            style="margin: 5px;font-size: 18px;"
-                            @click="dateClick(monthDay)"
-                        >
-                        <i class="iconfont icon-r-paper" style="font-size: 24px;"></i>
-                            {{ monthDay }}</el-button
-                        >
+                        <el-button type="primary" style="margin: 5px;font-size: 18px;" @click="dateClick(monthDay)">
+                            <i class="iconfont icon-r-paper" style="font-size: 24px;"></i>
+                            {{ monthDay }}</el-button>
                     </li>
                 </ul>
             </div>
@@ -96,13 +88,16 @@ export default {
     cursor: not-allowed; // 鼠标变化
     pointer-events: none;
 }
+
 .router-view {
     margin-top: 20px;
 }
+
 .sectionUl li {
     display: inline;
     padding: 60px;
 }
+
 .dateUl li {
     display: inline;
     //margin: 5px;
