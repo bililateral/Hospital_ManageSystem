@@ -1,9 +1,5 @@
 <template>
     <div>
-        <!-- <div class="indexImage">
-        <img src="@/assets/hospital.jpeg" class="layoutImage"/>
-        <span>今天预约挂号总人数：{{orderPeople}}</span>
-      </div> -->
         <div class="indexPeople">
             <div class="userImage">
                 <i class="iconfont icon-r-user2" style="font-size: 132px"></i>
