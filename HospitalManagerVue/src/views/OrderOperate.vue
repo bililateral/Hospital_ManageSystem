@@ -3,9 +3,7 @@
         <el-card>
             <!-- 面包屑 -->
             <el-breadcrumb separator-class="el-icon-arrow-right">
-                <el-breadcrumb-item :to="{ path: '/orderOperate' }"
-                    >科室选择</el-breadcrumb-item
-                >
+                <el-breadcrumb-item :to="{ path: '/orderOperate' }">科室选择</el-breadcrumb-item>
                 <el-breadcrumb-item>日期选择</el-breadcrumb-item>
                 <el-breadcrumb-item>挂号</el-breadcrumb-item>
             </el-breadcrumb>
@@ -18,13 +16,8 @@
             <!-- <i class="iconfont icon-r-love" style="font-size: 22px;"><b> 内科</b></i> -->
             <ul>
                 <li v-for="inter in inters" :key="inter">
-                    <el-button
-                        type="primary"
-                        style="margin: 5px"
-                        size="mini"
-                        @click="sectionClick(inter)"
-                        >{{ inter }}</el-button
-                    >
+                    <el-button type="primary" style="margin: 5px" size="mini" @click="sectionClick(inter)">{{ inter
+                    }}</el-button>
                 </li>
             </ul>
             <el-divider></el-divider>
@@ -34,13 +27,8 @@
             </div>
             <ul>
                 <li v-for="out in outs" :key="out">
-                    <el-button
-                        type="primary"
-                        style="margin: 5px"
-                        size="mini"
-                        @click="sectionClick(out)"
-                        >{{ out }}</el-button
-                    >
+                    <el-button type="primary" style="margin: 5px" size="mini" @click="sectionClick(out)">{{ out
+                    }}</el-button>
                 </li>
             </ul>
             <el-divider></el-divider>
@@ -50,13 +38,8 @@
             </div>
             <ul>
                 <li v-for="woman in women" :key="woman">
-                    <el-button
-                        type="primary"
-                        style="margin: 5px"
-                        size="mini"
-                        @click="sectionClick(woman)"
-                        >{{ woman }}</el-button
-                    >
+                    <el-button type="primary" style="margin: 5px" size="mini" @click="sectionClick(woman)">{{ woman
+                    }}</el-button>
                 </li>
             </ul>
             <el-divider></el-divider>
@@ -66,13 +49,8 @@
             </div>
             <ul>
                 <li v-for="kid in kids" :key="kid">
-                    <el-button
-                        type="primary"
-                        style="margin: 5px"
-                        size="mini"
-                        @click="sectionClick(kid)"
-                        >{{ kid }}</el-button
-                    >
+                    <el-button type="primary" style="margin: 5px" size="mini" @click="sectionClick(kid)">{{ kid
+                    }}</el-button>
                 </li>
             </ul>
             <el-divider></el-divider>
@@ -82,13 +60,8 @@
             </div>
             <ul>
                 <li v-for="five in fives" :key="five">
-                    <el-button
-                        type="primary"
-                        style="margin: 5px"
-                        size="mini"
-                        @click="sectionClick(five)"
-                        >{{ five }}</el-button
-                    >
+                    <el-button type="primary" style="margin: 5px" size="mini" @click="sectionClick(five)">{{ five
+                    }}</el-button>
                 </li>
             </ul>
             <el-divider></el-divider>
@@ -98,13 +71,8 @@
             </div>
             <ul>
                 <li v-for="chinese in chineses" :key="chinese">
-                    <el-button
-                        type="primary"
-                        style="margin: 5px"
-                        size="mini"
-                        @click="sectionClick(chinese)"
-                        >{{ chinese }}</el-button
-                    >
+                    <el-button type="primary" style="margin: 5px" size="mini" @click="sectionClick(chinese)">{{ chinese
+                    }}</el-button>
                 </li>
             </ul>
             <el-divider></el-divider>
@@ -114,13 +82,8 @@
             </div>
             <ul>
                 <li v-for="orther in orthers" :key="orther">
-                    <el-button
-                        type="primary"
-                        style="margin: 5px"
-                        size="mini"
-                        @click="sectionClick(orther)"
-                        >{{ orther }}</el-button
-                    >
+                    <el-button type="primary" style="margin: 5px" size="mini" @click="sectionClick(orther)">{{ orther
+                    }}</el-button>
                 </li>
             </ul>
             <el-divider></el-divider>
@@ -167,7 +130,7 @@ export default {
         },
     },
     mounted() {
-      toLoad()
+        toLoad()
     }
 };
 </script>
@@ -175,6 +138,7 @@ export default {
 ul li {
     display: inline;
 }
+
 .el-breadcrumb {
     margin: 8px;
 }
