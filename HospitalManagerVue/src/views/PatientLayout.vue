@@ -86,11 +86,13 @@ export default {
     width: 250px;
     float: right;
     color: white;
+
     .spanCure {
         font-size: 15px;
         margin-top: 60px;
         margin-bottom: 15px;
     }
+
     .spanPeople {
         font-size: 18px;
     }
@@ -106,6 +108,7 @@ export default {
     top: 10px;
     float: left;
 }
+
 .indexPeople {
     height: 200px;
     width: 440px;
