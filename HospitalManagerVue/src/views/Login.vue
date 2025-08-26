@@ -1,71 +1,41 @@
 <template>
     <div class="login-index" :style="backgroundDiv">
         <div class="mid-index">
-            <i
-                style="
+            <i style="
                     top: 40px;
                     font-size: 28px;
                     left: 20px;
                     position: absolute;
-                "
-                class="iconfont icon-r-love"
-            >
+                " class="iconfont icon-r-love">
                 登录医院管理系统
             </i>
-            <el-form
-                :model="loginForm"
-                :rules="loginRules"
-                ref="ruleForm"
-                class="loginForm"
-            >
+            <el-form :model="loginForm" :rules="loginRules" ref="ruleForm" class="loginForm">
                 <el-form-item prop="id">
                     <!--必须绑定v-model输入框才能输入字符---->
-                    <el-input 
-                        v-model="loginForm.id"
-                        placeholder="请输入账号"
-                    >
-                        <i
-                            slot="prefix"
-                            class="iconfont icon-r-user1"
-                            style="font-size: 22px"
-                        ></i>
+                    <el-input v-model="loginForm.id" placeholder="请输入账号">
+                        <i slot="prefix" class="iconfont icon-r-user1" style="font-size: 22px"></i>
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
-                    <el-input 
-                        v-model="loginForm.password" 
-                        show-password
-                        placeholder="请输入密码"
-                    >
-                        <i
-                            slot="prefix"
-                            class="iconfont icon-r-lock"
-                            style="font-size: 22px"
-                        ></i>
+                    <el-input v-model="loginForm.password" show-password placeholder="请输入密码">
+                        <i slot="prefix" class="iconfont icon-r-lock" style="font-size: 22px"></i>
                     </el-input>
                 </el-form-item>
                 <!-- 新增验证码输入框 -->
-                <el-form-item prop="captcha">  <!-- 新增 -->
-                    <el-row :gutter="10">  <!-- 新增 -->
-                        <el-col :span="14">  <!-- 新增 -->
-                            <el-input 
-                                v-model="loginForm.captcha" 
-                                placeholder="请输入验证码"
-                            >  <!-- 新增 -->
-                                <i
-                                    slot="prefix"
-                                    class="iconfont icon-r-code"
-                                    style="font-size: 22px"
-                                ></i>  <!-- 新增 -->
-                            </el-input>  <!-- 新增 -->
-                        </el-col>  <!-- 新增 -->
-                        <el-col :span="10">  <!-- 新增 -->
-                            <div class="captcha-img">  <!-- 新增 -->
-                                <img :src="captchaUrl" @click="refreshCaptcha" alt="验证码" />  <!-- 新增 -->
-                            </div>  <!-- 新增 -->
-                        </el-col>  <!-- 新增 -->
-                    </el-row>  <!-- 新增 -->
-                </el-form-item>  <!-- 新增 -->
+                <el-form-item prop="captcha"> <!-- 新增 -->
+                    <el-row :gutter="10"> <!-- 新增 -->
+                        <el-col :span="14"> <!-- 新增 -->
+                            <el-input v-model="loginForm.captcha" placeholder="请输入验证码"> <!-- 新增 -->
+                                <i slot="prefix" class="iconfont icon-r-code" style="font-size: 22px"></i> <!-- 新增 -->
+                            </el-input> <!-- 新增 -->
+                        </el-col> <!-- 新增 -->
+                        <el-col :span="10"> <!-- 新增 -->
+                            <div class="captcha-img"> <!-- 新增 -->
+                                <img :src="captchaUrl" @click="refreshCaptcha" alt="验证码" /> <!-- 新增 -->
+                            </div> <!-- 新增 -->
+                        </el-col> <!-- 新增 -->
+                    </el-row> <!-- 新增 -->
+                </el-form-item> <!-- 新增 -->
 
                 <!-- 角色单选框 -->
                 <el-form-item class="role">
@@ -77,50 +47,25 @@
                 </el-form-item>
 
                 <el-form-item class="btns">
-                    <el-button
-                        type="primary"
-                        style="font-size: 18px"
-                        @click="submitLoginForm('ruleForm')"
-                    >
-                        <i
-                            class="iconfont icon-r-yes"
-                            style="font-size: 20px"
-                        ></i>
-                        登录</el-button
-                    >
-                    <el-button
-                        type="info"
-                        style="font-size: 18px"
-                        @click="registerFormVisible = true"
-                    >
-                        <i
-                            class="iconfont icon-r-add"
-                            style="font-size: 20px"
-                        ></i>
-                        注册新账号</el-button
-                    >
+                    <el-button type="primary" style="font-size: 18px" @click="submitLoginForm('ruleForm')">
+                        <i class="iconfont icon-r-yes" style="font-size: 20px"></i>
+                        登录</el-button>
+                    <el-button type="info" style="font-size: 18px" @click="registerFormVisible = true">
+                        <i class="iconfont icon-r-add" style="font-size: 20px"></i>
+                        注册新账号</el-button>
                 </el-form-item>
             </el-form>
         </div>
 
         <!-- 注册对话框 -->
         <el-dialog title="用户注册" :visible.sync="registerFormVisible">
-            <el-form
-                class="findPassword"
-                :model="registerForm"
-                :rules="registerRules"
-                ref="registerForm"
-            >
+            <el-form class="findPassword" :model="registerForm" :rules="registerRules" ref="registerForm">
                 <el-form-item label="账号" label-width="80px" prop="pId">
                     <el-input v-model.number="registerForm.pId"></el-input>
                 </el-form-item>
                 <el-form-item label="性别" label-width="80px">
-                    <el-radio v-model="registerForm.pGender" label="男"
-                        >男</el-radio
-                    >
-                    <el-radio v-model="registerForm.pGender" label="女"
-                        >女</el-radio
-                    >
+                    <el-radio v-model="registerForm.pGender" label="男">男</el-radio>
+                    <el-radio v-model="registerForm.pGender" label="女">女</el-radio>
                 </el-form-item>
                 <el-form-item label="密码" label-width="80px" prop="pPassword">
                     <el-input v-model="registerForm.pPassword"></el-input>
@@ -128,17 +73,9 @@
                 <el-form-item label="姓名" label-width="80px" prop="pName">
                     <el-input v-model="registerForm.pName"></el-input>
                 </el-form-item>
-                <el-form-item
-                    label="出生日期"
-                    label-width="80px"
-                    prop="pBirthday"
-                >
-                    <el-date-picker
-                        v-model="registerForm.pBirthday"
-                        type="date"
-                        placeholder="选择日期"
-                        value-format="yyyy-MM-dd"
-                    >
+                <el-form-item label="出生日期" label-width="80px" prop="pBirthday">
+                    <el-date-picker v-model="registerForm.pBirthday" type="date" placeholder="选择日期"
+                        value-format="yyyy-MM-dd">
                     </el-date-picker>
                 </el-form-item>
                 <el-form-item label="手机号" label-width="80px" prop="pPhone">
@@ -152,22 +89,12 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button
-                    @click="registerFormVisible = false"
-                    style="font-size: 18px"
-                    ><i
-                        class="iconfont icon-r-left"
-                        style="font-size: 20px"
-                    ></i>
-                    取 消</el-button
-                >
-                <el-button
-                    type="primary"
-                    @click="registerClick('registerForm')"
-                    style="font-size: 18px"
-                    ><i class="iconfont icon-r-yes" style="font-size: 20px"></i>
-                    确 定</el-button
-                >
+                <el-button @click="registerFormVisible = false" style="font-size: 18px"><i class="iconfont icon-r-left"
+                        style="font-size: 20px"></i>
+                    取 消</el-button>
+                <el-button type="primary" @click="registerClick('registerForm')" style="font-size: 18px"><i
+                        class="iconfont icon-r-yes" style="font-size: 20px"></i>
+                    确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -256,16 +183,18 @@ export default {
                 // 新增验证码验证规则
                 captcha: [  // 新增
                     { required: true, message: "请输入验证码", trigger: "blur" },  // 新增
-                    { validator: (rule, value, callback) => {
-                        if (value && value.length !== 4) {
-                            // 长度不符时刷新验证码
-                            this.refreshCaptcha();
-                            this.loginForm.captcha = "";
-                            callback(new Error("验证码长度为4位，已自动刷新"));
-                        } else {
-                            callback();
-                        }
-                    }, trigger: "blur" }  // 新增
+                    {
+                        validator: (rule, value, callback) => {
+                            if (value && value.length !== 4) {
+                                // 长度不符时刷新验证码
+                                this.refreshCaptcha();
+                                this.loginForm.captcha = "";
+                                callback(new Error("验证码长度为4位，已自动刷新"));
+                            } else {
+                                callback();
+                            }
+                        }, trigger: "blur"
+                    }  // 新增
                 ],  // 新增
             },
             role: "患者",
@@ -358,9 +287,9 @@ export default {
             // 新增验证码相关属性
             captchaUrl: "",  // 新增：验证码图片URL
             rolePaths: {     //每个角色有权访问的路径
-            '管理员': ['/admin', '/adminLayout', '/doctorList', '/patientList', '/orderList', '/drugList', '/checkList', '/bedList', '/arrangeIndex', '/dataExpore'],
-            '医生': ['/doctor', '/doctorLayout', '/orderToday', '/dealOrder', '/dealOrderAgain', '/doctorOrder', '/inBed', '/doctorCard'],
-            '患者': ['/patient', '/patientLayout', '/orderOperate', '/sectionMessage', '/myOrder', '/myBed', '/patientCard']
+                '管理员': ['/admin', '/adminLayout', '/doctorList', '/patientList', '/orderList', '/drugList', '/checkList', '/bedList', '/arrangeIndex', '/dataExpore'],
+                '医生': ['/doctor', '/doctorLayout', '/orderToday', '/dealOrder', '/dealOrderAgain', '/doctorOrder', '/inBed', '/doctorCard'],
+                '患者': ['/patient', '/patientLayout', '/orderOperate', '/sectionMessage', '/myOrder', '/myBed', '/patientCard']
             }
         };
     },
@@ -389,14 +318,14 @@ export default {
                 if (valid) {
                     request
                         .post("patient/addPatient", {
-                                pId: this.registerForm.pId,
-                                pName: this.registerForm.pName,
-                                pPassword: this.registerForm.pPassword,
-                                pGender: this.registerForm.pGender,
-                                pEmail: this.registerForm.pEmail,
-                                pPhone: this.registerForm.pPhone,
-                                pCard: this.registerForm.pCard,
-                                pBirthday: this.registerForm.pBirthday,
+                            pId: this.registerForm.pId,
+                            pName: this.registerForm.pName,
+                            pPassword: this.registerForm.pPassword,
+                            pGender: this.registerForm.pGender,
+                            pEmail: this.registerForm.pEmail,
+                            pPhone: this.registerForm.pPhone,
+                            pCard: this.registerForm.pCard,
+                            pBirthday: this.registerForm.pBirthday,
                         })
                         .then((res) => {
                             if (res.data.status !== 200)
@@ -570,7 +499,7 @@ export default {
                             .post("admin/login", params)
                             .then((res) => {
                                 console.log(res);
-                                if (res.data.status != 200){
+                                if (res.data.status != 200) {
                                     this.refreshCaptcha();
                                     return this.$message.error(res.data.msg);
                                 }
@@ -624,10 +553,10 @@ export default {
                             .post("doctor/login", params1)
                             .then((res) => {
                                 console.log(res);
-                                if (res.data.status != 200){
+                                if (res.data.status != 200) {
                                     this.refreshCaptcha();
-                                    return this.$message.error(res.data.msg);   
-                                }        
+                                    return this.$message.error(res.data.msg);
+                                }
                                 // 1. 登录成功，先保存token  
                                 setToken(res.data.data.token);
 
@@ -681,10 +610,10 @@ export default {
                             .post("patient/login", params2)
                             .then((res) => {
                                 console.log(res);
-                                if (res.data.status != 200){
+                                if (res.data.status != 200) {
                                     this.refreshCaptcha();
                                     return this.$message.error(res.data.msg);
-                                }   
+                                }
                                 setToken(res.data.data.token);
                                 const targetUrl = localStorage.getItem('targetUrl');
                                 if (targetUrl) {
@@ -737,29 +666,46 @@ export default {
 
 <style lang="scss">
 // 新增验证码图片样式
-.captcha-img {  /* 新增 */
-    width: 100%;  /* 新增 */
-    height: 40px;  /* 新增 */
-    cursor: pointer;  /* 新增 */
-    overflow: hidden;  /* 新增 */
-    img {  /* 新增 */
-        width: 100%;  /* 新增 */
-        height: 100%;  /* 新增 */
-        object-fit: cover;  /* 新增 */
-    }  /* 新增 */
-}  /* 新增 */
+.captcha-img {
+    /* 新增 */
+    width: 100%;
+    /* 新增 */
+    height: 40px;
+    /* 新增 */
+    cursor: pointer;
+    /* 新增 */
+    overflow: hidden;
+
+    /* 新增 */
+    img {
+        /* 新增 */
+        width: 100%;
+        /* 新增 */
+        height: 100%;
+        /* 新增 */
+        object-fit: cover;
+        /* 新增 */
+    }
+
+    /* 新增 */
+}
+
+/* 新增 */
 .codeInput {
     width: 70%;
     margin-right: 10px;
 }
+
 .findPassword {
     margin-top: 0px;
 }
+
 .login-index {
     background: #2b4b6b;
     height: 100vh;
     position: relative;
 }
+
 .mid-index {
     opacity: 0.9;
     width: 450px;
@@ -772,6 +718,7 @@ export default {
     transform: translate(-50%, -50%);
     overflow: hidden;
 }
+
 .logo-index {
     background: white;
     height: 130px;
@@ -798,17 +745,22 @@ export default {
 .loginForm {
     margin-top: 100px;
 }
+
 .el-form-item {
     margin-left: 20px;
     margin-right: 20px;
-    margin-bottom: 15px; /* 增加表单项之间的间距，避免拥挤 */
+    margin-bottom: 15px;
+    /* 增加表单项之间的间距，避免拥挤 */
 }
+
 //角色单选
 .role {
     margin-left: 90px;
     margin-right: 90px;
-    margin-bottom: 15px; /* 增加间距 */
+    margin-bottom: 15px;
+    /* 增加间距 */
 }
+
 //按钮
 .btns {
     display: flex;
