@@ -5,21 +5,15 @@
         <el-row type="flex">
             <el-col :span="8">
                 <el-input v-model="query" placeholder="请输入姓名查询">
-                    <el-button
-                        slot="append"
-                        style="font-size: 18px;"
-                        @click="requestDoctors"
-                    ><i class="iconfont icon-r-find" style="font-size: 22px;"></i> 搜索</el-button>
+                    <el-button slot="append" style="font-size: 18px;" @click="requestDoctors"><i
+                            class="iconfont icon-r-find" style="font-size: 22px;"></i> 搜索</el-button>
                 </el-input>
             </el-col>
             <el-col :span="4"></el-col>
             <el-col :span="4">
-                <el-button type="primary" @click="addFormVisible = true"
-                        style="font-size: 18px;"
-                    >
-                    <i class="iconfont icon-r-add" style="font-size: 22px;"></i> 
-                    增加医生</el-button
-                >
+                <el-button type="primary" @click="addFormVisible = true" style="font-size: 18px;">
+                    <i class="iconfont icon-r-add" style="font-size: 22px;"></i>
+                    增加医生</el-button>
             </el-col>
             <el-col :span="4"></el-col>
             <!-- 导入数据 -->
@@ -70,61 +64,36 @@
             </el-table-column>
             <el-table-column prop="dState" label="是否在职" width="80">
                 <template slot-scope="scope">
-                    <el-tag type="success" v-if="scope.row.dState === 1"
-                        >在职</el-tag
-                    >
+                    <el-tag type="success" v-if="scope.row.dState === 1">在职</el-tag>
                     <el-tag type="danger" v-else>离职</el-tag>
                 </template>
             </el-table-column>
             <el-table-column label="操作" width="240" fixed="right">
                 <template slot-scope="scope">
-                    <el-button
-                        style="font-size: 18px;"
-                        type="success"
-                        @click="modifyDialog(scope.row.dId)"
-                    ><i class="iconfont icon-r-edit" style="font-size: 22px;"></i> 编辑</el-button>
-                    <el-button
-                        style="font-size: 18px;"
-                        type="danger"
-                        @click="deleteDialog(scope.row.dId)"
-                    ><i class="iconfont icon-r-delete" style="font-size: 22px;"></i> 删除</el-button>
+                    <el-button style="font-size: 18px;" type="success" @click="modifyDialog(scope.row.dId)"><i
+                            class="iconfont icon-r-edit" style="font-size: 22px;"></i> 编辑</el-button>
+                    <el-button style="font-size: 18px;" type="danger" @click="deleteDialog(scope.row.dId)"><i
+                            class="iconfont icon-r-delete" style="font-size: 22px;"></i> 删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
 
         <!-- 分页 -->
-        <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            background
-            layout="total, sizes, prev, pager, next, jumper"
-            :current-page="pageNumber"
-            :page-size="size"
-            :page-sizes="[1, 2, 4, 8, 16]"
-            :total="total"
-        >
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" background
+            layout="total, sizes, prev, pager, next, jumper" :current-page="pageNumber" :page-size="size"
+            :page-sizes="[1, 2, 4, 8, 16]" :total="total">
         </el-pagination>
         <!-- 增加医生对话框 -->
         <el-dialog title="增加医生" :visible.sync="addFormVisible">
             <el-form :model="addForm" :rules="rules" ref="ruleForm">
                 <el-form-item label="账号" label-width="80px" prop="dId">
-                    <el-input
-                        v-model.number="addForm.dId"
-                        autocomplete="off"
-                    ></el-input>
+                    <el-input v-model.number="addForm.dId" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" label-width="80px">
-                    <el-input
-                        v-model="addForm.dPassword"
-                        autocomplete="off"
-                        disabled
-                    ></el-input>
+                    <el-input v-model="addForm.dPassword" autocomplete="off" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="姓名" label-width="80px" prop="dName">
-                    <el-input
-                        v-model="addForm.dName"
-                        autocomplete="off"
-                    ></el-input>
+                    <el-input v-model="addForm.dName" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="性别" label-width="80px">
                     <el-radio v-model="addForm.dGender" label="男">男</el-radio>
@@ -132,73 +101,38 @@
                 </el-form-item>
                 <el-form-item label="职位" label-width="80px" prop="dPost">
                     <el-select v-model="addForm.dPost" placeholder="请选择职称">
-                        <el-option
-                            v-for="post in posts"
-                            :key="post"
-                            :label="post"
-                            :value="post"
-                        >
+                        <el-option v-for="post in posts" :key="post" :label="post" :value="post">
                         </el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="科室" label-width="80px" prop="dSection">
-                    <el-select
-                        v-model="addForm.dSection"
-                        filterable
-                        placeholder="请选择科室"
-                    >
-                        <el-option
-                            v-for="section in sections"
-                            :key="section"
-                            :label="section"
-                            :value="section"
-                        >
+                    <el-select v-model="addForm.dSection" filterable placeholder="请选择科室">
+                        <el-option v-for="section in sections" :key="section" :label="section" :value="section">
                         </el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="身份证号" label-width="80px" prop="dCard">
-                    <el-input
-                        v-model="addForm.dCard"
-                        autocomplete="off"
-                    ></el-input>
+                    <el-input v-model="addForm.dCard" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="手机号" label-width="80px" prop="dPhone">
-                    <el-input
-                        v-model="addForm.dPhone"
-                        autocomplete="off"
-                    ></el-input>
+                    <el-input v-model="addForm.dPhone" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="邮箱" label-width="80px" prop="dEmail">
-                    <el-input
-                        v-model="addForm.dEmail"
-                        autocomplete="off"
-                    ></el-input>
+                    <el-input v-model="addForm.dEmail" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="挂号费" label-width="80px" prop="dPrice">
-                    <el-input
-                        v-model="addForm.dPrice"
-                        autocomplete="off"
-                    ></el-input>
+                    <el-input v-model="addForm.dPrice" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item
-                    label="简介"
-                    label-width="80px"
-                    prop="dIntroduction"
-                >
-                    <el-input
-                        type="textarea"
-                        :rows="5"
-                        placeholder="请输入内容"
-                        v-model="addForm.dIntroduction"
-                    >
+                <el-form-item label="简介" label-width="80px" prop="dIntroduction">
+                    <el-input type="textarea" :rows="5" placeholder="请输入内容" v-model="addForm.dIntroduction">
                     </el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="addFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left" style="font-size: 20px;"></i> 取 消</el-button>
-                <el-button type="primary" @click="addDoctor('ruleForm')"
-                    style="font-size: 18px;"><i class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button
-                >
+                <el-button @click="addFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left"
+                        style="font-size: 20px;"></i> 取 消</el-button>
+                <el-button type="primary" @click="addDoctor('ruleForm')" style="font-size: 18px;"><i
+                        class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button>
             </div>
         </el-dialog>
 
@@ -206,109 +140,56 @@
         <el-dialog title="修改医生信息" :visible.sync="modifyFormVisible">
             <el-form :model="modifyForm" :rules="rules" ref="ruleForm">
                 <el-form-item label="账号" label-width="80px" prop="dId">
-                    <el-input
-                        v-model.number="modifyForm.dId"
-                        autocomplete="off"
-                        disabled
-                    ></el-input>
+                    <el-input v-model.number="modifyForm.dId" autocomplete="off" disabled></el-input>
                 </el-form-item>
 
                 <el-form-item label="姓名" label-width="80px" prop="dName">
-                    <el-input
-                        v-model="modifyForm.dName"
-                        autocomplete="off"
-                    ></el-input>
+                    <el-input v-model="modifyForm.dName" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="性别" label-width="80px">
-                    <el-radio v-model="modifyForm.dGender" label="男"
-                        >男</el-radio
-                    >
-                    <el-radio v-model="modifyForm.dGender" label="女"
-                        >女</el-radio
-                    >
+                    <el-radio v-model="modifyForm.dGender" label="男">男</el-radio>
+                    <el-radio v-model="modifyForm.dGender" label="女">女</el-radio>
                 </el-form-item>
                 <el-form-item label="职位" label-width="80px" prop="dPost">
-                    <el-select
-                        v-model="modifyForm.dPost"
-                        placeholder="请选择职称"
-                    >
-                        <el-option
-                            v-for="post in posts"
-                            :key="post"
-                            :label="post"
-                            :value="post"
-                        >
+                    <el-select v-model="modifyForm.dPost" placeholder="请选择职称">
+                        <el-option v-for="post in posts" :key="post" :label="post" :value="post">
                         </el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="科室" label-width="80px" prop="dSection">
-                    <el-select
-                        v-model="modifyForm.dSection"
-                        filterable
-                        placeholder="请选择科室"
-                    >
-                        <el-option
-                            v-for="section in sections"
-                            :key="section"
-                            :label="section"
-                            :value="section"
-                        >
+                    <el-select v-model="modifyForm.dSection" filterable placeholder="请选择科室">
+                        <el-option v-for="section in sections" :key="section" :label="section" :value="section">
                         </el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="身份证号" label-width="80px" prop="dCard">
-                    <el-input
-                        v-model="modifyForm.dCard"
-                        autocomplete="off"
-                    ></el-input>
+                    <el-input v-model="modifyForm.dCard" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="手机号" label-width="80px" prop="dPhone">
-                    <el-input
-                        v-model="modifyForm.dPhone"
-                        autocomplete="off"
-                    ></el-input>
+                    <el-input v-model="modifyForm.dPhone" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="邮箱" label-width="80px" prop="dEmail">
-                    <el-input
-                        v-model="modifyForm.dEmail"
-                        autocomplete="off"
-                    ></el-input>
+                    <el-input v-model="modifyForm.dEmail" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="挂号费" label-width="80px" prop="dPrice">
-                    <el-input
-                        v-model="modifyForm.dPrice"
-                        autocomplete="off"
-                    ></el-input>
+                    <el-input v-model="modifyForm.dPrice" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item
-                    label="简介"
-                    label-width="80px"
-                    prop="dIntroduction"
-                >
-                    <el-input
-                        type="textarea"
-                        :rows="5"
-                        placeholder="请输入内容"
-                        v-model="modifyForm.dIntroduction"
-                    >
+                <el-form-item label="简介" label-width="80px" prop="dIntroduction">
+                    <el-input type="textarea" :rows="5" placeholder="请输入内容" v-model="modifyForm.dIntroduction">
                     </el-input>
                 </el-form-item>
                 <el-form-item label="状态" label-width="80px" prop="dState">
-                    <el-input
-                        v-model.number="modifyForm.dState"
-                        autocomplete="off"
-                        placeholder="请输入1或0"
-                    ></el-input>
+                    <el-input v-model.number="modifyForm.dState" autocomplete="off" placeholder="请输入1或0"></el-input>
                     <div style="color: #606266; font-size: 12px; margin-top: 5px;">
                         提示:1表示在职,0表示离职
                     </div>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="modifyFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left" style="font-size: 20px;"></i> 取 消</el-button>
-                <el-button type="primary" @click="modifyDoctor('ruleForm')"
-                    style="font-size: 18px;"><i class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button
-                >
+                <el-button @click="modifyFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left"
+                        style="font-size: 20px;"></i> 取 消</el-button>
+                <el-button type="primary" @click="modifyDoctor('ruleForm')" style="font-size: 18px;"><i
+                        class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button>
             </div>
         </el-dialog>
     </el-card>
@@ -435,8 +316,8 @@ export default {
                 dCard: [{ validator: validateCard }],
                 // 添加dState的验证规则
                 dState: [{ required: true, message: "请输入状态", trigger: "blur" },
-                        { type: "number", message: "状态必须是数字", trigger: "blur" },
-                        { validator: validateState, trigger: "blur" }],  
+                { type: "number", message: "状态必须是数字", trigger: "blur" },
+                { validator: validateState, trigger: "blur" }],
                 dIntroduction: [
                     {
                         required: true,
@@ -517,7 +398,7 @@ export default {
                     if (res.data.status !== 200)
                         this.$message.error("请求数据失败");
                     const doctorData = res.data.data;
-                    doctorData.dState = Number(doctorData.dState); 
+                    doctorData.dState = Number(doctorData.dState);
                     this.modifyForm = doctorData;
                     this.modifyFormVisible = true;
                     console.log(res);
@@ -633,6 +514,7 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 .el-form {
     margin-top: 0;
 }
