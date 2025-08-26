@@ -6,60 +6,36 @@
             <el-row type="flex">
                 <el-col :span="6">
                     <el-input v-model="query" placeholder="请输入名称查询">
-                        <el-button
-                            slot="append"
-                            style="font-size: 18px;"
-                            @click="requestChecks"
-                        ><i class="iconfont icon-r-find" style="font-size: 22px;"></i> 搜索</el-button>
+                        <el-button slot="append" style="font-size: 18px;" @click="requestChecks"><i
+                                class="iconfont icon-r-find" style="font-size: 22px;"></i> 搜索</el-button>
                     </el-input>
                 </el-col>
                 <el-col :span="6"></el-col>
                 <el-col :span="6">
-                    <el-button
-                        type="primary"
-                        style="font-size: 18px"
-                        @click="addFormVisible = true"
-                    >
-                    <i class="iconfont icon-r-add" style="font-size: 22px;"></i> 
-                        增加项目</el-button
-                    >
+                    <el-button type="primary" style="font-size: 18px" @click="addFormVisible = true">
+                        <i class="iconfont icon-r-add" style="font-size: 22px;"></i>
+                        增加项目</el-button>
                 </el-col>
             </el-row>
             <!-- 表格 -->
             <el-table :data="checkData" stripe style="width: 100%" border>
                 <el-table-column label="编号" prop="chId"></el-table-column>
                 <el-table-column label="项目" prop="chName"></el-table-column>
-                <el-table-column
-                    label="价格/元"
-                    prop="chPrice"
-                ></el-table-column>
+                <el-table-column label="价格/元" prop="chPrice"></el-table-column>
                 <el-table-column label="操作" width="250" fixed="right">
                     <template slot-scope="scope">
-                        <el-button
-                            style="font-size: 18px"
-                            type="success"
-                            @click="modifyDialog(scope.row.chId)"
-                        ><i class="iconfont icon-r-edit" style="font-size: 22px;"></i> 编辑</el-button>
-                        <el-button
-                            style="font-size: 18px"
-                            type="danger"
-                            @click="deleteDialog(scope.row.chId)"
-                        ><i class="iconfont icon-r-delete" style="font-size: 22px;"></i> 删除</el-button>
+                        <el-button style="font-size: 18px" type="success" @click="modifyDialog(scope.row.chId)"><i
+                                class="iconfont icon-r-edit" style="font-size: 22px;"></i> 编辑</el-button>
+                        <el-button style="font-size: 18px" type="danger" @click="deleteDialog(scope.row.chId)"><i
+                                class="iconfont icon-r-delete" style="font-size: 22px;"></i> 删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
 
             <!-- 分页 -->
-            <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                background
-                layout="total, sizes, prev, pager, next, jumper"
-                :current-page="pageNumber"
-                :page-size="size"
-                :page-sizes="[1, 2, 4, 8, 16]"
-                :total="total"
-            >
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" background
+                layout="total, sizes, prev, pager, next, jumper" :current-page="pageNumber" :page-size="size"
+                :page-sizes="[1, 2, 4, 8, 16]" :total="total">
             </el-pagination>
         </el-card>
 
@@ -77,10 +53,10 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="addFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left" style="font-size: 20px;"></i> 取 消</el-button>
-                <el-button type="primary" @click="addCheck('ruleForm')"
-                    style="font-size: 18px;"><i class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button
-                >
+                <el-button @click="addFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left"
+                        style="font-size: 20px;"></i> 取 消</el-button>
+                <el-button type="primary" @click="addCheck('ruleForm')" style="font-size: 18px;"><i
+                        class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button>
             </div>
         </el-dialog>
 
@@ -88,10 +64,7 @@
         <el-dialog title="修改检查项目" :visible.sync="modifyFormVisible">
             <el-form :model="modifyForm" :rules="rules" ref="ruleForm">
                 <el-form-item label="编号" prop="chId" label-width="80px">
-                    <el-input
-                        v-model.number="modifyForm.chId"
-                        disabled
-                    ></el-input>
+                    <el-input v-model.number="modifyForm.chId" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="名称" prop="chName" label-width="80px">
                     <el-input v-model="modifyForm.chName"></el-input>
@@ -101,10 +74,10 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="modifyFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left" style="font-size: 20px;"></i> 取 消</el-button>
-                <el-button type="primary" @click="modifyCheck('ruleForm')"
-                    style="font-size: 18px;"><i class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button
-                >
+                <el-button @click="modifyFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left"
+                        style="font-size: 20px;"></i> 取 消</el-button>
+                <el-button type="primary" @click="modifyCheck('ruleForm')" style="font-size: 18px;"><i
+                        class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -292,6 +265,7 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 .el-form {
     margin-top: 0;
 }
