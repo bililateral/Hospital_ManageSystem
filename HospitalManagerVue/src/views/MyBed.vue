@@ -19,36 +19,36 @@ export default {
     name: "MyBed",
     data() {
         return {
-            bedData:[],
-            userId:1,
+            bedData: [],
+            userId: 1,
         }
     },
     methods: {
         //请求病床信息
-        requestBed(){
+        requestBed() {
             request.get("bed/findBedByPid", {
                 params: {
                     pId: this.userId
                 }
             })
-            .then(res => {
-                if(res.data.status !== 200)
-                return this.$message.error("请求数据失败");
-                this.bedData = res.data.data;
-            })
+                .then(res => {
+                    if (res.data.status !== 200)
+                        return this.$message.error("请求数据失败");
+                    this.bedData = res.data.data;
+                })
 
         },
-           //token解码
-    tokenDecode(token){
-      if (token !== null)
-      return jwtDecode(token);
-    },
+        //token解码
+        tokenDecode(token) {
+            if (token !== null)
+                return jwtDecode(token);
+        },
 
     },
-    created(){
-           // 解码token
-            this.userId = this.tokenDecode(getToken()).pId;
-            this.requestBed();
+    created() {
+        // 解码token
+        this.userId = this.tokenDecode(getToken()).pId;
+        this.requestBed();
     }
 }
 </script>
