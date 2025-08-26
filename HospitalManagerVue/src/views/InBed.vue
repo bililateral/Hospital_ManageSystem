@@ -5,11 +5,7 @@
             <el-row type="flex">
                 <el-col :span="6">
                     <el-input v-model="query" placeholder="请输入患者id查询">
-                        <el-button
-                            slot="append"
-                            icon="iconfont icon-r-find"
-                            @click="requestOrders"
-                        ></el-button>
+                        <el-button slot="append" icon="iconfont icon-r-find" @click="requestOrders"></el-button>
                     </el-input>
                 </el-col>
             </el-row>
@@ -18,45 +14,27 @@
                 <el-table-column label="患者id" prop="pId"></el-table-column>
                 <el-table-column label="医生id" prop="dId"></el-table-column>
                 <!-- <el-table-column label="医生姓名" prop="dName"></el-table-column> -->
-                <el-table-column
-                    label="挂号时间"
-                    prop="oStart"
-                ></el-table-column>
+                <el-table-column label="挂号时间" prop="oStart"></el-table-column>
                 <el-table-column label="结束时间" prop="oEnd"></el-table-column>
                 <el-table-column label="挂号状态" prop="oState">
                     <template slot-scope="scope">
-                        <el-tag v-if="scope.row.oState === 1" type="success"
-                            >已完成</el-tag
-                        >
-                        <el-tag v-if="scope.row.oState === 0" type="danger"
-                            >未完成</el-tag
-                        >
+                        <el-tag v-if="scope.row.oState === 1" type="success">已完成</el-tag>
+                        <el-tag v-if="scope.row.oState === 0" type="danger">未完成</el-tag>
                     </template>
                 </el-table-column>
                 <el-table-column label="操作" width="180" fixed="right">
                     <template slot-scope="scope">
-                        <el-button
-                            type="warning"
-                            style="font-size: 18px"
-                            @click="BedDiag(scope.row.pId, scope.row.dId)"
-                        >
-                        <i class="iconfont icon-r-building" style="font-size: 22px"></i>
-                             申请住院</el-button
-                        >
+                        <el-button type="warning" style="font-size: 18px"
+                            @click="BedDiag(scope.row.pId, scope.row.dId)">
+                            <i class="iconfont icon-r-building" style="font-size: 22px"></i>
+                            申请住院</el-button>
                     </template>
                 </el-table-column>
             </el-table>
             <!-- 分页 -->
-            <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                background
-                layout="total, sizes, prev, pager, next, jumper"
-                :current-page="pageNumber"
-                :page-size="size"
-                :page-sizes="[1, 2, 4, 8, 16]"
-                :total="total"
-            >
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" background
+                layout="total, sizes, prev, pager, next, jumper" :current-page="pageNumber" :page-size="size"
+                :page-sizes="[1, 2, 4, 8, 16]" :total="total">
             </el-pagination>
         </el-card>
         <!-- 住院对话框 -->
@@ -69,28 +47,21 @@
                     <el-input v-model="bedForm.dId" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="申请原因" label-width="80px">
-                    <el-input
-                        v-model="bedForm.bReason"
-                        type="textarea"
-                        :rows="4"
-                    ></el-input>
+                    <el-input v-model="bedForm.bReason" type="textarea" :rows="4"></el-input>
                 </el-form-item>
 
                 <el-form-item label="病床号" label-width="80px" prop="bId">
                     <el-select v-model="bedForm.bId">
-                        <el-option
-                            v-for="item in nullBed"
-                            :key="item.bId"
-                            :label="item.bId"
-                            :value="item.bId"
-                        >
+                        <el-option v-for="item in nullBed" :key="item.bId" :label="item.bId" :value="item.bId">
                         </el-option>
                     </el-select>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="BedFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left" style="font-size: 20px;"></i> 取 消</el-button>
-                <el-button type="primary" @click="bedClick" style="font-size: 18px;"><i class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button>
+                <el-button @click="BedFormVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left"
+                        style="font-size: 20px;"></i> 取 消</el-button>
+                <el-button type="primary" @click="bedClick" style="font-size: 18px;"><i class="iconfont icon-r-yes"
+                        style="font-size: 20px;"></i> 确 定</el-button>
             </div>
         </el-dialog>
     </div>
