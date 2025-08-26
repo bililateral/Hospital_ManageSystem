@@ -1,8 +1,3 @@
-<!--
- * @Description: 
- * @Author: Rabbiter
- * @Date: 2023-01-14 20:02:29
--->
 <template>
     <div>
         <div class="indexPeople">
