@@ -7,23 +7,12 @@
             <el-table-column label="患者id" prop="pId"></el-table-column>
             <el-table-column label="患者姓名" prop="pName"></el-table-column>
             <el-table-column label="医生姓名" prop="dName"></el-table-column>
-            <el-table-column
-                label="挂号时间"
-                prop="oStart"
-                width="200px"
-            ></el-table-column>
+            <el-table-column label="挂号时间" prop="oStart" width="200px"></el-table-column>
             <el-table-column label="操作" fixed="right">
                 <template slot-scope="scope">
-                    <el-button
-                        type="warning"
-                        style="font-size: 18px"
-                        @click="dealClick(scope.row.oId, scope.row.pId)"
-                    >
-                        <i
-                            class="iconfont icon-r-love"
-                            style="font-size: 26px"
-                        ></i>
-                         处理
+                    <el-button type="warning" style="font-size: 18px" @click="dealClick(scope.row.oId, scope.row.pId)">
+                        <i class="iconfont icon-r-love" style="font-size: 26px"></i>
+                        处理
                     </el-button>
                 </template>
             </el-table-column>
