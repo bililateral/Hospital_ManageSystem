@@ -5,11 +5,8 @@
         <el-row type="flex">
             <el-col :span="6">
                 <el-input v-model="query" placeholder="请输入姓名查询">
-                    <el-button
-                        slot="append"
-                        style="font-size: 18px;"
-                        @click="requestPatients"
-                    ><i class="iconfont icon-r-find" style="font-size: 22px;"></i> 搜索</el-button>
+                    <el-button slot="append" style="font-size: 18px;" @click="requestPatients"><i
+                            class="iconfont icon-r-find" style="font-size: 22px;"></i> 搜索</el-button>
                 </el-input>
             </el-col>
         </el-row>
@@ -29,34 +26,22 @@
             </el-table-column>
             <el-table-column prop="pState" label="状态" width="80">
                 <template slot-scope="scope">
-                    <el-tag type="success" v-if="scope.row.pState === 1"
-                        >正常</el-tag
-                    >
+                    <el-tag type="success" v-if="scope.row.pState === 1">正常</el-tag>
                     <el-tag type="danger" v-else>已删除</el-tag>
                 </template>
             </el-table-column>
             <el-table-column label="操作" width="160" fixed="right">
                 <template slot-scope="scope">
-                    <el-button
-                        style="font-size: 18px"
-                        type="danger"
-                        @click="deleteDialog(scope.row.pId)"
-                    ><i class="iconfont icon-r-delete" style="font-size: 22px;"></i> 删除</el-button>
+                    <el-button style="font-size: 18px" type="danger" @click="deleteDialog(scope.row.pId)"><i
+                            class="iconfont icon-r-delete" style="font-size: 22px;"></i> 删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
 
         <!-- 分页 -->
-        <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            background
-            layout="total, sizes, prev, pager, next, jumper"
-            :current-page="pageNumber"
-            :page-size="size"
-            :page-sizes="[1, 2, 4, 8, 16]"
-            :total="total"
-        >
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" background
+            layout="total, sizes, prev, pager, next, jumper" :current-page="pageNumber" :page-size="size"
+            :page-sizes="[1, 2, 4, 8, 16]" :total="total">
         </el-pagination>
     </el-card>
 </template>
@@ -148,6 +133,7 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 .el-form {
     margin-top: 0;
 }
