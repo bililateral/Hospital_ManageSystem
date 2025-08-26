@@ -3,83 +3,44 @@
         <!-- 头部 -->
         <el-header>
             <div class="words">
-                <span
-                    @click="menuClick('patientLayout')"
-                    style="font-size: 22px"
-                >
+                <span @click="menuClick('patientLayout')" style="font-size: 22px">
                     <i class="iconfont icon-r-love" style="font-size: 26px">
-                        医院管理系统</i
-                    >
+                        医院管理系统</i>
                 </span>
             </div>
             <div class="words">
-                <span
-                    >欢迎您，<b>{{ userName }}</b
-                    >&nbsp;</span
-                >
-                <span
-                    ><el-button type="danger" size="mini" @click="logout"
-                        >退出</el-button
-                    ></span
-                >
+                <span>欢迎您，<b>{{ userName }}</b>&nbsp;</span>
+                <span><el-button type="danger" size="mini" @click="logout">退出</el-button></span>
             </div>
         </el-header>
         <el-container>
             <!-- 侧边栏 -->
             <el-aside width="200px">
                 <!-- 导航菜单 -->
-                <el-menu
-                    background-color="white"
-                    text-color="grey"
-                    active-text-color="black"
-                    :default-active="activePath"
-                    style="font-size: 22px"
-                >
-                    <el-menu-item
-                        index="patientLayout"
-                        @click="menuClick('patientLayout')"
-                        style="font-size: 20px"
-                    >
+                <el-menu background-color="white" text-color="grey" active-text-color="black"
+                    :default-active="activePath" style="font-size: 22px">
+                    <el-menu-item index="patientLayout" @click="menuClick('patientLayout')" style="font-size: 20px">
                         <i class="iconfont icon-r-home" style="font-size: 26px">
                         </i>
                         首页
                     </el-menu-item>
-                    <el-menu-item
-                        index="orderOperate"
-                        @click="menuClick('orderOperate')"
-                        style="font-size: 20px"
-                    >
+                    <el-menu-item index="orderOperate" @click="menuClick('orderOperate')" style="font-size: 20px">
                         <i class="iconfont icon-r-edit" style="font-size: 22px">
                         </i>
                         预约挂号
                     </el-menu-item>
-                    <el-menu-item
-                        index="myOrder"
-                        @click="menuClick('myOrder')"
-                        style="font-size: 20px"
-                    >
+                    <el-menu-item index="myOrder" @click="menuClick('myOrder')" style="font-size: 20px">
                         <i class="iconfont icon-r-list" style="font-size: 22px">
                         </i>
                         我的挂号
                     </el-menu-item>
-                    <el-menu-item
-                        index="myBed"
-                        @click="menuClick('myBed')"
-                        style="font-size: 20px"
-                    >
+                    <el-menu-item index="myBed" @click="menuClick('myBed')" style="font-size: 20px">
                         <i class="iconfont icon-r-home" style="font-size: 22px">
                         </i>
                         住院信息
                     </el-menu-item>
-                    <el-menu-item
-                        index="patientCard"
-                        style="font-size: 20px"
-                        @click="menuClick('patientCard')"
-                    >
-                        <i
-                            class="iconfont icon-r-user2"
-                            style="font-size: 22px"
-                        ></i>
+                    <el-menu-item index="patientCard" style="font-size: 20px" @click="menuClick('patientCard')">
+                        <i class="iconfont icon-r-user2" style="font-size: 22px"></i>
                         个人信息
                     </el-menu-item>
                 </el-menu>
@@ -158,26 +119,32 @@ export default {
 .title {
     cursor: pointer;
 }
+
 .el-header {
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid lightgrey;
+
     .words {
         text-align: center;
+
         span {
             color: black;
         }
     }
 }
+
 .el-container {
     height: 100%;
 }
+
 .el-aside {
     background-color: white;
     border-right: 1px solid lightgrey;
 }
+
 .el-menu {
     border: 0;
 }
