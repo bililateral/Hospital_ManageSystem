@@ -4,9 +4,7 @@
         <el-card>
             <!-- 面包屑 -->
             <el-breadcrumb separator-class="el-icon-arrow-right">
-                <el-breadcrumb-item :to="{ path: '/orderOperate' }"
-                    >科室选择</el-breadcrumb-item
-                >
+                <el-breadcrumb-item :to="{ path: '/orderOperate' }">科室选择</el-breadcrumb-item>
                 <el-breadcrumb-item>日期选择</el-breadcrumb-item>
                 <el-breadcrumb-item>挂号</el-breadcrumb-item>
             </el-breadcrumb>
@@ -14,27 +12,18 @@
             <!-- 两边布局 -->
             <div class="head">
                 <div>
-                    <i
-                        class="iconfont icon-r-user1"
-                        style="margin: 5px; font-size: 26px"
-                    >
-                        {{ sectionOpt }}医生列表</i
-                    >
+                    <i class="iconfont icon-r-user1" style="margin: 5px; font-size: 26px">
+                        {{ sectionOpt }}医生列表</i>
                 </div>
 
                 <!-- 选择挂号时间 -->
                 <div>
                     <i class="iconfont icon-r-paper" style="font-size: 22px">
-                        请选择你要挂号的日期：</i
-                    >
+                        请选择你要挂号的日期：</i>
                     <ul class="dateUl">
                         <li v-for="monthDay in monthDays" :key="monthDay">
-                            <el-button
-                                icon="iconfont icon-r-paper"
-                                @click="dateClick(monthDay)"
-                            >
-                                {{ monthDay }}</el-button
-                            >
+                            <el-button icon="iconfont icon-r-paper" @click="dateClick(monthDay)">
+                                {{ monthDay }}</el-button>
                         </li>
                     </ul>
                 </div>
@@ -42,11 +31,7 @@
 
             <!-- 表格 -->
             <el-table :data="sectionData" stripe style="width: 100%" border>
-                <el-table-column
-                    type="index"
-                    label="序号"
-                    width="60"
-                ></el-table-column>
+                <el-table-column type="index" label="序号" width="60"></el-table-column>
                 <el-table-column prop="dId" label="工号" width="80">
                 </el-table-column>
                 <el-table-column prop="dName" label="姓名" width="80">
@@ -55,11 +40,7 @@
                 </el-table-column>
                 <el-table-column prop="dPost" label="职位" width="100">
                 </el-table-column>
-                <el-table-column
-                    prop="dSection"
-                    label="科室"
-                    width="100"
-                ></el-table-column>
+                <el-table-column prop="dSection" label="科室" width="100"></el-table-column>
                 <el-table-column prop="dIntroduction" label="简介">
                 </el-table-column>
                 <el-table-column prop="dPrice" label="挂号费用/元" width="80">
@@ -68,14 +49,9 @@
                 </el-table-column>
                 <el-table-column label="操作" width="140" v-if="clickTag">
                     <template slot-scope="scope">
-                        <el-button
-                            class="iconfont icon-r-paper"
-                            style="font-size: 14px"
-                            type="warning"
-                            @click="openClick(scope.row.dId, scope.row.dName)"
-                        >
-                            挂号</el-button
-                        >
+                        <el-button class="iconfont icon-r-paper" style="font-size: 14px" type="warning"
+                            @click="openClick(scope.row.dId, scope.row.dName)">
+                            挂号</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -83,78 +59,35 @@
         <!-- 挂号对话框 -->
         <el-dialog title="填写挂号信息" :visible.sync="orderFormVisible">
             <el-form :model="orderForm" ref="orderForm" :rules="orderRules">
-                <el-form-item
-                    label="挂号时间段"
-                    label-width="100px"
-                    prop="oTime"
-                >
-                    <el-select
-                        v-model="orderForm.oTime"
-                        placeholder="请选择"
-                        no-data-text="请尝试预约明日"
-                    >
-                        <el-option
-                            v-for="time in times"
-                            :key="time"
-                            :label="time"
-                            :value="time"
-                        >
+                <el-form-item label="挂号时间段" label-width="100px" prop="oTime">
+                    <el-select v-model="orderForm.oTime" placeholder="请选择" no-data-text="请尝试预约明日">
+                        <el-option v-for="time in times" :key="time" :label="time" :value="time">
                         </el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="挂号日期" label-width="100px">
-                    <el-input
-                        v-model="orderForm.orderDate"
-                        autocomplete="off"
-                        disabled
-                    ></el-input>
+                    <el-input v-model="orderForm.orderDate" autocomplete="off" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="医生工号" label-width="100px">
-                    <el-input
-                        v-model="orderForm.dId"
-                        autocomplete="off"
-                        disabled
-                    ></el-input>
+                    <el-input v-model="orderForm.dId" autocomplete="off" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="医生姓名" label-width="100px">
-                    <el-input
-                        v-model="orderForm.dName"
-                        autocomplete="off"
-                        disabled
-                    ></el-input>
+                    <el-input v-model="orderForm.dName" autocomplete="off" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="患者姓名" label-width="100px">
-                    <el-input
-                        v-model="orderForm.pName"
-                        autocomplete="off"
-                        disabled
-                    ></el-input>
+                    <el-input v-model="orderForm.pName" autocomplete="off" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="患者身份证号" label-width="100px">
-                    <el-input
-                        v-model="orderForm.pCard"
-                        autocomplete="off"
-                        disabled
-                    ></el-input>
+                    <el-input v-model="orderForm.pCard" autocomplete="off" disabled></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button
-                    @click="orderFormVisible = false"
-                    style="font-size: 18px"
-                    ><i
-                        class="iconfont icon-r-left"
-                        style="font-size: 20px"
-                    ></i>
-                    取 消</el-button
-                >
-                <el-button
-                    type="primary"
-                    @click="orderSuccess('orderForm')"
-                    style="font-size: 18px"
-                    ><i class="iconfont icon-r-yes" style="font-size: 20px"></i>
-                    确 定</el-button
-                >
+                <el-button @click="orderFormVisible = false" style="font-size: 18px"><i class="iconfont icon-r-left"
+                        style="font-size: 20px"></i>
+                    取 消</el-button>
+                <el-button type="primary" @click="orderSuccess('orderForm')" style="font-size: 18px"><i
+                        class="iconfont icon-r-yes" style="font-size: 20px"></i>
+                    确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -391,17 +324,21 @@ export default {
     //margin: 5px;
     padding: 1px;
 }
+
 .dateUl {
     margin: 10px;
 }
+
 .el-breadcrumb {
     margin: 8px;
 }
+
 .head {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .el-form {
     margin-top: 0;
 }
