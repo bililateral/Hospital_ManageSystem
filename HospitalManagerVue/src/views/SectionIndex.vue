@@ -4,25 +4,17 @@
             <!-- <span>科室门诊</span> -->
             <el-divider></el-divider>
             <div class="sectionIndex" style="font-size: 24px">
-                <i class="iconfont icon-r-love" style="font-size: 26px"
-                    ></i
-                >
+                <i class="iconfont icon-r-love" style="font-size: 26px"></i>
                 <b> 内科类</b>
             </div>
             <ul>
                 <li v-for="inter in inters" :key="inter">
-                    <el-button
-                        style="margin: 5px"
-                        @click="sectionClick(inter)"
-                        >{{ inter }}</el-button
-                    >
+                    <el-button style="margin: 5px" @click="sectionClick(inter)">{{ inter }}</el-button>
                 </li>
             </ul>
             <el-divider></el-divider>
             <div class="sectionIndex" style="font-size: 24px">
-                <i class="iconfont icon-r-love" style="font-size: 26px"
-                    ></i
-                >
+                <i class="iconfont icon-r-love" style="font-size: 26px"></i>
                 <b> 外科类</b>
             </div>
             <ul>
@@ -34,30 +26,22 @@
             </ul>
             <el-divider></el-divider>
             <div class="sectionIndex">
-            <div class="sectionIndex" style="font-size: 24px">
-                <i class="iconfont icon-r-love" style="font-size: 26px"
-                    ></i
-                >
-                <b> 妇产科类</b>
-            </div>
+                <div class="sectionIndex" style="font-size: 24px">
+                    <i class="iconfont icon-r-love" style="font-size: 26px"></i>
+                    <b> 妇产科类</b>
+                </div>
             </div>
             <ul>
                 <li v-for="woman in women" :key="woman">
-                    <el-button
-                        style="margin: 5px"
-                        @click="sectionClick(woman)"
-                        >{{ woman }}</el-button
-                    >
+                    <el-button style="margin: 5px" @click="sectionClick(woman)">{{ woman }}</el-button>
                 </li>
             </ul>
             <el-divider></el-divider>
             <div class="sectionIndex">
-            <div class="sectionIndex" style="font-size: 24px">
-                <i class="iconfont icon-r-love" style="font-size: 26px"
-                    ></i
-                >
-                <b> 儿科类</b>
-            </div>
+                <div class="sectionIndex" style="font-size: 24px">
+                    <i class="iconfont icon-r-love" style="font-size: 26px"></i>
+                    <b> 儿科类</b>
+                </div>
             </div>
             <ul>
                 <li v-for="kid in kids" :key="kid">
@@ -68,56 +52,38 @@
             </ul>
             <el-divider></el-divider>
             <div class="sectionIndex">
-            <div class="sectionIndex" style="font-size: 24px">
-                <i class="iconfont icon-r-love" style="font-size: 26px"
-                    ></i
-                >
-                <b> 五官科类</b>
-            </div>
+                <div class="sectionIndex" style="font-size: 24px">
+                    <i class="iconfont icon-r-love" style="font-size: 26px"></i>
+                    <b> 五官科类</b>
+                </div>
             </div>
             <ul>
                 <li v-for="five in fives" :key="five">
-                    <el-button
-                        style="margin: 5px"
-                        @click="sectionClick(five)"
-                        >{{ five }}</el-button
-                    >
+                    <el-button style="margin: 5px" @click="sectionClick(five)">{{ five }}</el-button>
                 </li>
             </ul>
             <el-divider></el-divider>
             <div class="sectionIndex">
-            <div class="sectionIndex" style="font-size: 24px">
-                <i class="iconfont icon-r-love" style="font-size: 26px"
-                    ></i
-                >
-                <b> 中医科类</b>
-            </div>
+                <div class="sectionIndex" style="font-size: 24px">
+                    <i class="iconfont icon-r-love" style="font-size: 26px"></i>
+                    <b> 中医科类</b>
+                </div>
             </div>
             <ul>
                 <li v-for="chinese in chineses" :key="chinese">
-                    <el-button
-                        style="margin: 5px"
-                        @click="sectionClick(chinese)"
-                        >{{ chinese }}</el-button
-                    >
+                    <el-button style="margin: 5px" @click="sectionClick(chinese)">{{ chinese }}</el-button>
                 </li>
             </ul>
             <el-divider></el-divider>
             <div class="sectionIndex">
-            <div class="sectionIndex" style="font-size: 24px">
-                <i class="iconfont icon-r-love" style="font-size: 26px"
-                    ></i
-                >
-                <b> 其他类</b>
-            </div>
+                <div class="sectionIndex" style="font-size: 24px">
+                    <i class="iconfont icon-r-love" style="font-size: 26px"></i>
+                    <b> 其他类</b>
+                </div>
             </div>
             <ul>
                 <li v-for="orther in orthers" :key="orther">
-                    <el-button
-                        style="margin: 5px"
-                        @click="sectionClick(orther)"
-                        >{{ orther }}</el-button
-                    >
+                    <el-button style="margin: 5px" @click="sectionClick(orther)">{{ orther }}</el-button>
                 </li>
             </ul>
             <el-divider></el-divider>
@@ -162,7 +128,7 @@ export default {
         },
     },
     mounted() {
-      toLoad()
+        toLoad()
     }
 };
 </script>
@@ -170,6 +136,7 @@ export default {
 ul li {
     display: inline;
 }
+
 .el-breadcrumb {
     margin: 8px;
 }
