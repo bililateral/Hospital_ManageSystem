@@ -2,70 +2,24 @@
     <div>
         <el-card>
             <el-table :data="orderData" stripe style="width: 100%" border>
-                <el-table-column
-                    prop="oId"
-                    label="挂号单号"
-                    width="75px"
-                ></el-table-column>
-                <el-table-column
-                    prop="pId"
-                    label="本人id"
-                    width="75px"
-                ></el-table-column>
-                <el-table-column
-                    prop="pName"
-                    label="姓名"
-                    width="75px"
-                ></el-table-column>
-                <el-table-column
-                    prop="dId"
-                    label="医生id"
-                    width="75px"
-                ></el-table-column>
-                <el-table-column
-                    prop="dName"
-                    label="医生姓名"
-                    width="75px"
-                ></el-table-column>
+                <el-table-column prop="oId" label="挂号单号" width="75px"></el-table-column>
+                <el-table-column prop="pId" label="本人id" width="75px"></el-table-column>
+                <el-table-column prop="pName" label="姓名" width="75px"></el-table-column>
+                <el-table-column prop="dId" label="医生id" width="75px"></el-table-column>
+                <el-table-column prop="dName" label="医生姓名" width="75px"></el-table-column>
 
-                <el-table-column
-                    prop="oStart"
-                    label="挂号时间"
-                    width="195px"
-                ></el-table-column>
-                <el-table-column
-                    prop="oEnd"
-                    label="结束时间"
-                    width="185px"
-                ></el-table-column>
-                <el-table-column
-                    prop="oTotalPrice"
-                    label="需交费用/元"
-                    width="80px"
-                ></el-table-column>
-                <el-table-column
-                    prop="oPriceState"
-                    label="缴费状态"
-                    width="150"
-                    align="center"
-                >
+                <el-table-column prop="oStart" label="挂号时间" width="195px"></el-table-column>
+                <el-table-column prop="oEnd" label="结束时间" width="185px"></el-table-column>
+                <el-table-column prop="oTotalPrice" label="需交费用/元" width="80px"></el-table-column>
+                <el-table-column prop="oPriceState" label="缴费状态" width="150" align="center">
                     <template slot-scope="scope">
-                        <el-tag
-                            type="success"
-                            v-if="scope.row.oPriceState === 1"
-                            >已缴费
+                        <el-tag type="success" v-if="scope.row.oPriceState === 1">已缴费
                         </el-tag>
                         <!-- <el-tag type="danger" v-if="scope.row.oPriceState === 0 && scope.row.oState === 1">未缴费</el-tag> -->
-                        <el-button
-                            type="warning"
-                            icon="iconfont icon-r-mark1"
-                            style="font-size: 14px"
-                            v-if="
-                                scope.row.oPriceState === 0 &&
-                                scope.row.oState === 1
-                            "
-                            @click="priceClick(scope.row.oId, scope.row.dId)"
-                        >   点击缴费
+                        <el-button type="warning" icon="iconfont icon-r-mark1" style="font-size: 14px" v-if="
+                            scope.row.oPriceState === 0 &&
+                            scope.row.oState === 1
+                        " @click="priceClick(scope.row.oId, scope.row.dId)"> 点击缴费
                         </el-button>
                         <el-tag type="danger" v-if="scope.row.oPriceState == 0 && scope.row.oState == 0">
                             医生未确认
@@ -74,12 +28,9 @@
                 </el-table-column>
                 <el-table-column prop="oState" label="挂号状态" width="100px" align="center">
                     <template slot-scope="scope">
-                        <el-tag
-                            type="success"
-                            v-if="
-                                scope.row.oState === 1 
-                            "
-                            >挂号已确认
+                        <el-tag type="success" v-if="
+                            scope.row.oState === 1
+                        ">挂号已确认
                         </el-tag>
                         <el-tag type="danger" v-else>
                             挂号未确认
@@ -88,17 +39,11 @@
                 </el-table-column>
                 <el-table-column label="报告单">
                     <template slot-scope="scope">
-                        <el-button
-                            type="success"
-                            icon="iconfont icon-r-find"
-                            style="font-size: 14px"
-                            @click="seeReport(scope.row.oId)"
-                            v-if="
+                        <el-button type="success" icon="iconfont icon-r-find" style="font-size: 14px"
+                            @click="seeReport(scope.row.oId)" v-if="
                                 scope.row.oState === 1 &&
                                 scope.row.oPriceState === 1
-                            "
-                            > 查看</el-button
-                        >
+                            "> 查看</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -114,8 +59,10 @@
                 <el-rate v-model="star" show-text> </el-rate>
             </div>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="starVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left" style="font-size: 20px;"></i> 取 消</el-button>
-                <el-button type="primary" @click="starClick"style="font-size: 18px;"><i class="iconfont icon-r-yes" style="font-size: 20px;"></i> 确 定</el-button>
+                <el-button @click="starVisible = false" style="font-size: 18px;"><i class="iconfont icon-r-left"
+                        style="font-size: 20px;"></i> 取 消</el-button>
+                <el-button type="primary" @click="starClick" style="font-size: 18px;"><i class="iconfont icon-r-yes"
+                        style="font-size: 20px;"></i> 确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -205,7 +152,7 @@ export default {
                     this.orderData = res.data.data;
                     //this.orderData.dSection = res.data.data.map(item => item.doctor.dSection);
                     //console.log(res.data.data.map(item => item.doctor.dSection));
-                    console.log("订单列表：",this.orderData);
+                    console.log("订单列表：", this.orderData);
                     console.log(res);
                 });
         },
@@ -224,11 +171,11 @@ export default {
         // 解码token
         //this.orderData.pName = this.tokenDecode(getToken()).pName;
         //this.orderData.pCard = this.tokenDecode(getToken()).pCard;
-        this.userId = (this.tokenDecode(getToken())&&this.tokenDecode(getToken()).pId) || 0;
+        this.userId = (this.tokenDecode(getToken()) && this.tokenDecode(getToken()).pId) || 0;
         //this.orderData.pName = "dasda"
-        if(this.userId)
+        if (this.userId)
             this.requestOrder();
-        else{
+        else {
             this.$message.error("登录状态失效，请重新登录");
             this.$router.push('/login');
         }
